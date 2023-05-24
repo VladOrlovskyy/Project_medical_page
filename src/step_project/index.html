@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Step Project</title>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="container-md">
+                    <a href="index.html"><img class="logo-img img-fluid" src="helsi.jpg" alt="logo"></a>
+                    <div id="log-in-div"><button type="button" class="btn btn-success" id="log-in-btn" data-bs-toggle="modal" data-bs-target="#logInModal">Вхід</button></div>
+                    <div id="create-visit-div" class="hidden-element"><button type="button" class="btn btn-success" id="create-visit-btn" data-bs-toggle="modal" data-bs-target="#createVisitModal">Створити візит</button></div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+        <div class="modal fade" id="logInModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="log-in-form">
+                            <div class="mb-1">
+                                <label for="user-email" class="col-form-label">Електронна пошта:</label>
+                                <input type="email" class="form-control" id="user-email">
+                            </div>
+                            <div class="mb-1">
+                                <label for="user-password" class="col-form-label">Пароль:</label>
+                                <input type="password" class="form-control" id="user-password">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="log-in-btn-modal">Вхід</button>
+                    <!--<button type="submit" class="btn btn-success" id="log-in-btn-modal1">Register</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="createVisitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form id="doctor-selection">
+                    <label for="doctor">Обрати лікаря:</label>
+                    <select name="doctor" id="doctor">
+                        <option value="cardiologist">Кардіолог</option>
+                        <option value="dentist">Стоматолог</option>
+                        <option value="therapist">Терапевт</option>
+                    </select>
+                        <button class="btn btn-success" type="submit" id="select-doctor-btn">Обрати</button>
+                        <div id="visit-form" class="hidden-element">
+                            <div class="mb-1">
+                                <label for="visit-purpose" class="col-form-label">Мета візиту*:</label>
+                                <input type="text" class="form-control" id="visit-purpose">
+                            </div>
+                            <div class="mb-1">
+                                <label for="visit-description" class="col-form-label">Опис візиту*:</label>
+                                <input type="text" class="form-control" id="visit-description">
+                            </div>
+                            <div class="mb-1">
+                                <label for="urgency">Виберіть пріоритет*:</label>
+                                <select name="Терміновість" id="urgency" style="padding: 5px;">
+                                    <option value="ordinary">Звичайний</option>
+                                    <option value="priority">Пріоритетно</option>
+                                    <option value="urgent">Терміново</option>
+                                </select>
+                            </div>
+                            <div class="mb-1">
+                                <label for="visit-patient" class="col-form-label">ПІБ*:</label>
+                                <input type="text" class="form-control" id="visit-patient">
+                            </div>
+                            <div class="visit-add-info"></div>
+                            <div class="visit-form-btns">
+                                <button class="btn btn-success" type="submit" id="create-visit-confirm">Створити</button>
+                                <button class="btn btn-success" type="submit" id="create-visit-cancel"
+                                        data-bs-dismiss="modal">Закрити</button>
+                            </div>
+                            </div>
+                        </form>
+                       </div>
+                    </div>
+               </div>
+           </div>
+    <main>
+        <div class="container">
+            <div id="filter-conditions">
+            <div class="input-field"><label>Пошук</label>
+                <input type="text" id="autocomplete-input" class="form-control" placeholder="Пошук" />
+            </div>
+                <form action="" id="filter-by-doctor"><label>Оберіть лікаря</label>
+                    <select name="doctor" class="form-select" id="doctor-filter">
+                        <option value="doctors">~</option>
+                        <option value="cardiologist">Кардіолог</option>
+                        <option value="dentist">Стоматолог</option>
+                        <option value="therapist">Терапевт</option>
+                    </select>
+                </form>
+
+                <form action="" id="filter-by-urgency"><label>Виберіть за терміновістю</label>
+                    <select name="doctor" class="form-select" id="urgency-filter">
+                        <option value="urgency">~</option>
+                        <option value="ordinary">Звичайний</option>
+                        <option value="priority">Пріоритетно</option>
+                        <option value="urgent">Терміново</option>
+                    </select>
+                </form>
+
+            </div>
+        </div>
+        <div class="cards">
+            <div class="container-fluid">
+                <div class="cards-content row text-center justify-content-center" id="all-cards">
+                    <div class="spinner row justify-content-center">
+                        <div class="spinner-grow text-dark"><span class="visually-hidden">Loading...</span></div>
+                        <div class="spinner-grow text-warning"><span class="visually-hidden">Loading...</span></div>
+                        <div class="spinner-grow text-success"><span class="visually-hidden">Loading...</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+            <script src="js/modal.js" type="module"></script>
+            <script src="js/visit_patient.js" type="module"></script>
+            <script src="js/app.js" type="module"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
